@@ -1,3 +1,9 @@
+# Compiled class files
+*.class
+*.jar
+*.war
+*.ear
+
 # Maven
 target/
 pom.xml.tag
@@ -5,10 +11,6 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
 
 # IDE
 .idea/
@@ -19,3 +21,11 @@ buildNumber.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# AWS Credentials (NUNCA SUBIR)
+**/DynamoDbConfig.java
+application.properties
+
+# Logs
+*.log
+logs/
