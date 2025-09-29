@@ -1,7 +1,10 @@
 package com.divide_ai.backend_divide_ai.entidades;
 
 import java.util.Objects;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
+@DynamoDbBean
 public class Usuario {
     private Long id;
     private String nome;
@@ -13,8 +16,21 @@ public class Usuario {
         this.nome = nome;
     }
     
+    @DynamoDbPartitionKey
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     @Override
