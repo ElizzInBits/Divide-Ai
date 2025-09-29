@@ -11,8 +11,8 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Configuration
 public class DynamoDbConfig {
 
-    private static final String ACCESS_KEY = "<ACCESS_KEY>";
-    private static final String SECRET_KEY = "<SECRET_KEY>";
+    private static final String ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE";
+    private static final String SECRET_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
     private static final String REGION = "us-east-1";
 
     @Bean

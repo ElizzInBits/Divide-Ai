@@ -22,8 +22,7 @@ release.properties
 .DS_Store
 Thumbs.db
 
-# AWS Credentials (NUNCA SUBIR)
-**/DynamoDbConfig.java
+# AWS Credentials
 application.properties
 
 # Logs
