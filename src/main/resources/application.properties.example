@@ -1,7 +1,0 @@
-# AWS Configuration - COPIE PARA application.properties E CONFIGURE
-aws.access.key=<YOUR_ACCESS_KEY>
-aws.secret.key=<YOUR_SECRET_KEY>
-aws.region=us-east-1
-
-# DynamoDB Configuration
-aws.dynamodb.endpoint=https://dynamodb.us-east-1.amazonaws.com
