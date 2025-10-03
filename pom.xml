@@ -107,6 +107,9 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <mainClass>com.divide_ai.backend_divide_ai.DivideAiApplication</mainClass>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
