@@ -1,0 +1,32 @@
+# Compiled class files
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.eclipse/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AWS Credentials (NUNCA SUBIR)
+application.properties
+.env
+**/DynamoDbConfig.java
+
+# Logs
+*.log
+logs/

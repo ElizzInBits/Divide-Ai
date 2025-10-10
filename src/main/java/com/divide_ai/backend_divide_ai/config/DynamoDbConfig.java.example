@@ -1,0 +1,34 @@
+package com.divide_ai.backend_divide_ai.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+
+@Configuration
+public class DynamoDbConfig {
+
+    // COPIE ESTE ARQUIVO PARA DynamoDbConfig.java E CONFIGURE SUAS CREDENCIAIS
+    private static final String ACCESS_KEY = "SUA_ACCESS_KEY_AQUI";
+    private static final String SECRET_KEY = "SUA_SECRET_KEY_AQUI";
+    private static final String REGION = "us-east-1";
+
+    @Bean
+    public DynamoDbClient dynamoDbClient() {
+        return DynamoDbClient.builder()
+                .region(Region.of(REGION))
+                .credentialsProvider(StaticCredentialsProvider.create(
+                        AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY)))
+                .build();
+    }
+
+    @Bean
+    public DynamoDbEnhancedClient dynamoDbEnhancedClient(DynamoDbClient dynamoDbClient) {
+        return DynamoDbEnhancedClient.builder()
+                .dynamoDbClient(dynamoDbClient)
+                .build();
+    }
+}
