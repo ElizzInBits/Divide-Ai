@@ -10,21 +10,10 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import com.divide_ai.backend_divide_ai.config.DynamoDbTableCreator;
 
 
-//Commitar essa parte depois
-/* 
 @SpringBootApplication
-<<<<<<< HEAD
-@import({DynamoDbTableCreator.java.example})
-@OpenAPIDefinition(info = @info("DivideAi API", version = "0.1.0", description = "API para repartição de despesa", 
-    repository = @repository(name = "Divide-Ai", url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ") ) )
-*/
+//http://localhost:8080/swagger-ui/index.html
+//http://localhost:8080/v3/api-docs
 
-
-
-
-
-
-=======
 // @Import(DynamoDbTableCreator.class) // Desabilitado temporariamente pra testar um trem
 @OpenAPIDefinition(
     info = @Info(
@@ -37,13 +26,12 @@ import com.divide_ai.backend_divide_ai.config.DynamoDbTableCreator;
         )
     )
 )
->>>>>>> 17b5e31b511e7f609a183b81dfdc83e7d14b8520
 public class DivideAiApplication {
     public static void main(String[] args) {
         SpringApplication.run(DivideAiApplication.class, args);
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 17b5e31b511e7f609a183b81dfdc83e7d14b8520
+
+
+
