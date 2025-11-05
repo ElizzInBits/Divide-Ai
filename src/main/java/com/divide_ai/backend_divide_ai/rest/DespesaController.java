@@ -1,37 +1,46 @@
 package com.divide_ai.backend_divide_ai.rest;
 
 import com.divide_ai.backend_divide_ai.entidades.Despesa;
+import com.divide_ai.backend_divide_ai.negocio.DespesaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
-@RequestMapping("/Despesa")
-@Tag(name = "Despesas")
+@RequestMapping("/despesas")
+@Tag(name = "Despesas", description = "Operações relacionadas às despesas")
 public class DespesaController {
 
-    private final List<Despesa> despesas = new ArrayList<>();
+    private final DespesaService despesaService;
+
+    public DespesaController(DespesaService despesaService) {
+        this.despesaService = despesaService;
+    }
 
     @GetMapping
-    @Operation(summary = "Listar Despesas cadastradas", description = "Retorna uma lista de desspesas cadastrados")
+    @Operation(summary = "Listar todas as despesas")
     public List<Despesa> listarDespesas() {
-        return despesas;
+        return despesaService.listarDespesas();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar despesa por ID")
+    public Despesa buscarPorId(@PathVariable Long id) {
+        return despesaService.buscarPorId(id);
     }
 
     @PostMapping
-    @Operation(summary = "Cadastrar nova despesa", description = "Cria nova despesa no sistema")
-    public Despesa criarDespesa(@RequestBody Despesa despesa) {
-        despesas.add(despesa);
-        return despesa;
+    @Operation(summary = "Cadastrar nova despesa")
+    public void salvarDespesa(@RequestBody Despesa despesa) {
+        despesaService.salvarDespesa(despesa);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Excluir Despesa", description = "Remove uma despesa pelo ID")
-    public void excluirDespesa(@PathVariable Long id) {
-        despesas.removeIf(u -> Objects.equals(u.getId(), id));
+    @Operation(summary = "Excluir despesa")
+    public void deletarDespesa(@PathVariable Long id) {
+        despesaService.deletarDespesa(id);
     }
 }

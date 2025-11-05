@@ -1,37 +1,46 @@
 package com.divide_ai.backend_divide_ai.rest;
 
 import com.divide_ai.backend_divide_ai.entidades.Grupo;
+import com.divide_ai.backend_divide_ai.negocio.GrupoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
-@RequestMapping("/Grupo")
-@Tag(name = "Grupos")
+@RequestMapping("/grupos")
+@Tag(name = "Grupos", description = "Operações relacionadas aos grupos do sistema")
 public class GrupoController {
 
-    private final List<Grupo> grupos = new ArrayList<>();
+    private final GrupoService grupoService;
+
+    public GrupoController(GrupoService grupoService) {
+        this.grupoService = grupoService;
+    }
 
     @GetMapping
-    @Operation(summary = "Listar todos os grupos registrados", description = "Retorna uma lista de grupos cadastrados")
+    @Operation(summary = "Listar todos os grupos", description = "Retorna uma lista de grupos cadastrados")
     public List<Grupo> listarGrupos() {
-        return grupos;
+        return grupoService.listarGrupos();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar grupo por ID", description = "Retorna o grupo correspondente ao ID informado")
+    public Grupo getGrupoById(@PathVariable Long id) {
+        return grupoService.getGrupoById(id);
     }
 
     @PostMapping
-    @Operation(summary = "Cadastrar novo grupo", description = "Cria um novo grupo no sistema")
-    public Grupo criarGrupo(@RequestBody Grupo grupo) {
-        grupos.add(grupo);
-        return grupo;
+    @Operation(summary = "Criar grupo", description = "Cadastra um novo grupo no sistema")
+    public void salvarGrupo(@RequestBody Grupo grupo) {
+        grupoService.salvarGrupo(grupo);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Excluir grupo", description = "Remove um grupo pelo ID")
-    public void excluirGrupo(@PathVariable Long id) {
-        grupos.removeIf(u -> Objects.equals(u.getId(), id));
+    public void deletarGrupo(@PathVariable Long id) {
+        grupoService.deletarGrupo(id);
     }
 }

@@ -1,37 +1,46 @@
 package com.divide_ai.backend_divide_ai.rest;
 
 import com.divide_ai.backend_divide_ai.entidades.Usuario;
+import com.divide_ai.backend_divide_ai.negocio.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
-@RequestMapping("/Usuario")
-@Tag(name = "Usuários")
+@RequestMapping("/usuarios")
+@Tag(name = "Usuários", description = "Operações relacionadas aos usuários")
 public class UsuarioController {
 
-    private final List<Usuario> usuarios = new ArrayList<>();
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     @GetMapping
-    @Operation(summary = "Listar todos os usuários", description = "Retorna uma lista de usuários cadastrados")
+    @Operation(summary = "Listar todos os usuários")
     public List<Usuario> listarUsuarios() {
-        return usuarios;
+        return usuarioService.listarUsuarios();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar usuário por ID")
+    public Usuario buscarPorId(@PathVariable Long id) {
+        return usuarioService.buscarPorId(id);
     }
 
     @PostMapping
-    @Operation(summary = "Cadastrar novo usuário", description = "Cria um novo usuário no sistema")
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        usuarios.add(usuario);
-        return usuario;
+    @Operation(summary = "Cadastrar novo usuário")
+    public void salvarUsuario(@RequestBody Usuario usuario) {
+        usuarioService.salvarUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Excluir usuário", description = "Remove um usuário pelo ID")
-    public void excluirUsuario(@PathVariable Long id) {
-        usuarios.removeIf(u -> Objects.equals(u.getId(), id));
+    @Operation(summary = "Excluir usuário")
+    public void deletarUsuario(@PathVariable Long id) {
+        usuarioService.deletarUsuario(id);
     }
 }
