@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-// @Component // Desabilitado temporariamente
+@Component // Habilitado com credenciais válidas
 @Order(2)
 public class DataSeeder implements CommandLineRunner {
 

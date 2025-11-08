@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
 
-// @Component // Desabilitado temporariamente
+// @Component // Desabilitado - usando SimpleDataSeeder
 @Order(0)
 public class DynamoDbTableCreator implements CommandLineRunner {
 
